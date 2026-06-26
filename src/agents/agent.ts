@@ -344,7 +344,7 @@ export class Agent {
     }
 
     if (this.canDelegate() && checkDelegate(output)) {
-      const delegation = await delegateTo(this, output, inputs, 0);
+      const delegation = await delegateTo(this, output, inputs);
       if (delegation) {
         return JSON.stringify({ __delegate__: delegation, __depth__: 1 });
       }

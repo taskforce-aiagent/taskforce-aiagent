@@ -28,19 +28,6 @@ jest.mock("../agents/smartManagerAgent", () => {
     SmartManagerAgent: jest.fn().mockImplementation(() => ({
       setVerbose: jest.fn(),
       planTasks: jest.fn((tasks) => tasks),
-      decomposeTask: jest.fn(),
-      assignAgent: jest.fn(),
-      evaluateTaskOutput: jest.fn(() => ({ action: "accept" })),
-      reviewFinalOutput: jest.fn(() => ({ action: "accept" })),
-    })),
-  };
-});
-
-jest.mock("../agents/smartManagerAgent", () => {
-  return {
-    SmartManagerAgent: jest.fn().mockImplementation(() => ({
-      setVerbose: jest.fn(),
-      planTasks: jest.fn((tasks) => tasks),
       decomposeTask: jest.fn((mainTask, agents, verbose) => [mainTask]),
       assignAgent: jest.fn(),
       evaluateTaskOutput: jest.fn((task, finalOutput) => {
@@ -202,11 +189,7 @@ describe("TaskForce", () => {
     // veya throw etmesini bekliyorsan .rejects.toThrow
   });
 
-  it("should replan and then stop at replan limit", async () => {
-    // context __replanCount__ >= maxGlobalReplanLimit olduğunda tekrar replan yapmamalı
-  });
+  it.todo("should replan and then stop at replan limit");
 
-  it("should use tool handler if TOOL() pattern present in output", async () => {
-    // ToolExecutor ve tool mock’ları ile
-  });
+  it.todo("should use tool handler if TOOL() pattern present in output");
 });
