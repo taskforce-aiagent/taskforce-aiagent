@@ -23,10 +23,16 @@ export class StableDiffusionTool extends Tool {
   async handler(args: { prompt: string }) {
     try {
       const apiKey = process.env.REPLICATE_API_KEY;
+      if (!apiKey) throw new Error("REPLICATE_API_KEY is missing.");
+      const version = process.env.REPLICATE_MODEL_VERSION;
+      if (!version)
+        throw new Error(
+          "REPLICATE_MODEL_VERSION is not set. Provide the Replicate model version hash via the REPLICATE_MODEL_VERSION env variable."
+        );
       const res = await axios.post(
         "https://api.replicate.com/v1/predictions",
         {
-          version: "your-model-version",
+          version,
           input: { prompt: args.prompt },
         },
         {

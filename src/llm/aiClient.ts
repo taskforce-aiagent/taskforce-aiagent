@@ -253,7 +253,7 @@ async function callAIModelFunc(
           Authorization: `Bearer ${config.apiKey}`,
         },
         body: JSON.stringify({
-          model: config.model,
+          model: config.model.name,
           messages,
           temperature: modelOptions.temperature || 0.7,
           top_p: modelOptions.top_p || 1,

@@ -733,7 +733,7 @@ export class TaskForce extends EventEmitter {
         context,
         task.description,
         task.outputFormat,
-        toolResult,
+        summarized,
         undefined,
         "Output was tool result",
         undefined,

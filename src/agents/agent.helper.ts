@@ -330,18 +330,10 @@ export async function recursiveToolWorker(
 export async function delegateTo(
   agent: Agent,
   output: string,
-  inputs: Record<string, string>,
-  currentDepth: number = 0,
-  maxDepth: number = 3
+  inputs: Record<string, string>
 ): Promise<{ delegateTo: string; task: string } | null> {
+  // Per-agent delegation cap is enforced by canDelegate() (Agent.MAX_DELEGATION).
   if (!agent.canDelegate()) return null;
-
-  if (currentDepth >= maxDepth) {
-    console.warn(
-      `🚫 Delegation depth limit (${maxDepth}) reached for ${agent.name}`
-    );
-    return null;
-  }
 
   const match = output.match(/DELEGATE\(([^,]+),\s*"([^"]+)"\)/);
   if (!match) return null;
